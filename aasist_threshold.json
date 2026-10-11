@@ -1,0 +1,24 @@
+{
+    "model": "AASIST",
+    "threshold": 0.6899186372756958,
+    "positive_class": "bonafide",
+    "higher_score_means": "more_bona_fide_like",
+    "calibration_dataset": "SpeechAntiSpoofingBenchmarks/ASVspoof2019_LA",
+    "calibration_samples_per_class": 200,
+    "calibration_roc_auc": 0.997575,
+    "calibration_eer": 0.012500000000000008,
+    "holdout_evaluation": {
+        "roc_auc": 0.9987999999999999,
+        "eer": 0.02000000000000001,
+        "accuracy": 0.9775,
+        "precision": 0.9751243781094527,
+        "recall": 0.98,
+        "specificity": 0.975,
+        "true_positive": 196,
+        "false_negative": 4,
+        "false_positive": 5,
+        "true_negative": 195
+    },
+    "status": "EXPERIMENTAL_INTERNAL_HOLDOUT",
+    "probability_calibrated": false
+}
