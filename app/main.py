@@ -4,7 +4,7 @@ import tempfile
 from pathlib import Path
 
 from fastapi import FastAPI, UploadFile, File, HTTPException
-
+from fastapi.middleware.cors import CORSMiddleware
 from app.audio_processor import preprocess_audio
 from app.aasist_detector import detect_voice
 
@@ -13,6 +13,16 @@ app = FastAPI(
     title="AI Voice Clone Detection API",
     description="AI-powered voice clone detection service",
     version="1.0.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://vox-guard-frontend.vercel.app",
+    ],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Maximum upload size: 20 MB
