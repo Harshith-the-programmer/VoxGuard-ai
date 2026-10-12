@@ -22,7 +22,7 @@ from models.AASIST import Model
 DEVICE = torch.device("cpu")
 AUDIO_LENGTH = 64600
 SAMPLE_RATE = 16000
-
+torch.set_num_threads(1)
 
 @lru_cache(maxsize=1)
 def load_aasist_model():
@@ -146,7 +146,7 @@ def decode_audio_ffmpeg(file_path: str) -> np.ndarray:
     audio = np.frombuffer(
         completed.stdout,
         dtype="<f4",
-    ).copy()
+    )
 
     if audio.size == 0 or not np.all(np.isfinite(audio)):
         raise ValueError("Audio is empty or contains invalid samples.")
@@ -213,7 +213,7 @@ def detect_voice(file_path: str):
     segments = prepare_audio_segments(file_path)
 
     segment_scores = []
-    inference_batch_size = 4
+    inference_batch_size = 1
 
     for batch_start in range(0, len(segments), inference_batch_size):
         batch_segments = segments[
